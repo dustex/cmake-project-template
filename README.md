@@ -25,9 +25,10 @@ You will need:
 
 ## Folder Structrue
 
- * `src/*` — C++ code
- * `test/lib` — C++ libraries used for tests (eg, Google Test)
- * `test/src` — C++ test suite
+ * `cmake/*` - The cmake tools and helper files
+ * `src/*` - C++ code
+ * `test/lib` - C++ libraries used for tests (eg, Google Test)
+ * `test/src` - C++ test suite
  * `bin/`, `lib/`, `include/` empty directories, until the `make install` command installs the project artifacts there.
 
 ## Tests:
