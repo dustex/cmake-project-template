@@ -1,25 +1,23 @@
-project(template-project)
+cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
-cmake_minimum_required(VERSION 3.12)
+# ---- Project ----
+project(template-project 
+    VERSION 0.1.0
+    LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
+
+# ---- Include guards ----
+if(${PROJECT_SOURCE_DIR} STREQUAL ${PROJECT_BINARY_DIR})
+    message(FATAL_ERROR "In-source builds not allowed. Please make a new directory (the build directory) and run CMake from there.")
+endif()
+
 
 enable_testing()
 
 include(cmake/googletest-setup.cmake)
-
-# Code Coverage Tools Support
-if("${CMAKE_C_COMPILER_ID}" MATCHES "(Apple)?[Cc]lang"
-   OR "${CMAKE_CXXCOMPILER_ID}" MATCHES "(Apple)?[Cc]lang"
-   )
-  message("+++ Building with llvm Code Coverage Tools")
-  set(CMAKE_CXX_FLAGS "-fprofile-instr-generate -fcoverage-mapping")
-elseif(CMAKE_COMPILER_IS_GNUCXX)
-  message("+++ Building with lcov Code Coverage Tools")
-  set(CMAKE_CXX_FLAGS "--coverage")
-else()
-  message("+++ No compatible compiler for Code Coverage Tools")
-endif()
+include(cmake/qt-setup.cmake)
+include(cmake/code-coverage.cmake)
 
 # Add source directories
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -33,13 +31,13 @@ include(cmake/formatting.cmake)
 file(
   GLOB_RECURSE
   CMAKE_FILES
-  C:/Users/Chris/Google/Drive/Software_Entwicklung_privat/Algorithms_and_Coding_Training/CMakeLists.txt
+  CMakeLists.txt
   )
 
 file(
   GLOB_RECURSE
   DOT_CMAKE_FILES
-  C:/Users/Chris/Google/Drive/Software_Entwicklung_privat/Algorithms_and_Coding_Training/*.cmake
+  cmake/*.cmake
 )
 
 message("+++ CMAKE_CURRENT_SOURCE_DIR: " ${CMAKE_CURRENT_SOURCE_DIR})
