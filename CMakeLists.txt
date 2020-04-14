@@ -25,9 +25,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
 
 # Formatting of CMake files
 include(cmake/formatting.cmake)
-# store here  globbing expression
 
-#TODO the lines underneath are just for testing the cmake formatting tool
+# --- TODO the lines underneath are just for testing the cmake formatting tool
 file(
   GLOB_RECURSE
   CMAKE_FILES
@@ -46,3 +45,4 @@ message("+++ DOT_CMAKE_FILES: " ${DOT_CMAKE_FILES})
 
 cmake_format(cmake-format ${CMAKE_FILES})
 cmake_format(cmake-format-dot-files ${DOT_CMAKE_FILES})
+# --- TODO end ---
